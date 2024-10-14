@@ -1,0 +1,169 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Matebook黑屏排故 | 叶绿素b的博客</title><meta name="author" content="叶绿素b"><meta name="copyright" content="叶绿素b"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="最近一段时间笔记本总是出现间歇性黑屏，看起来像是某种程序卡住重启导致的   最开始总以为是驱动问题，但是驱动没有更新的了  接着怀疑是 mem reduct 的问题，认为是清理内存的时候导致驱动异常，但是后面发现即便内存使用率不高也会出现这个问题  顺着这个思路继续往下走，使用了 360 加速球时常观察、清理内存，发现 dwm.exe（Desktop Windows Mannage）偶现占用内存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matebook黑屏排故">
+<meta property="og:url" content="https://yebingiscn.github.io/2024/07/18/matebook%E9%BB%91%E5%B1%8F%E6%8E%92%E6%95%85/index.html">
+<meta property="og:site_name" content="叶绿素b的博客">
+<meta property="og:description" content="最近一段时间笔记本总是出现间歇性黑屏，看起来像是某种程序卡住重启导致的   最开始总以为是驱动问题，但是驱动没有更新的了  接着怀疑是 mem reduct 的问题，认为是清理内存的时候导致驱动异常，但是后面发现即便内存使用率不高也会出现这个问题  顺着这个思路继续往下走，使用了 360 加速球时常观察、清理内存，发现 dwm.exe（Desktop Windows Mannage）偶现占用内存">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yebingiscn.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2024-07-18T05:34:05.000Z">
+<meta property="article:modified_time" content="2024-07-18T06:29:45.421Z">
+<meta property="article:author" content="叶绿素b">
+<meta property="article:tag" content="生活">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yebingiscn.github.io/img/butterfly-icon.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://yebingiscn.github.io/2024/07/18/matebook%E9%BB%91%E5%B1%8F%E6%8E%92%E6%95%85/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        if (name && globalFn[key][name]) return
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Matebook黑屏排故',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-07-18 14:29:45'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="叶绿素b的博客" type="application/atom+xml">
+</head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">叶绿素b的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Matebook黑屏排故</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Matebook黑屏排故</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-18T05:34:05.000Z" title="发表于 2024-07-18 13:34:05">2024-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-18T06:29:45.421Z" title="更新于 2024-07-18 14:29:45">2024-07-18</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>最近一段时间笔记本总是出现间歇性黑屏，看起来像是某种程序卡住重启导致的</p>
+</blockquote>
+<ul>
+<li><p>最开始总以为是驱动问题，但是驱动没有更新的了</p>
+</li>
+<li><p>接着怀疑是 mem reduct 的问题，认为是清理内存的时候导致驱动异常，但是后面发现即便内存使用率不高也会出现这个问题</p>
+</li>
+<li><p>顺着这个思路继续往下走，使用了 360 加速球时常观察、清理内存，发现 dwm.exe（Desktop Windows Mannage）偶现占用内存超过 500M 乃至达到 2G 的情况。重启 dwm.exe 后内存占用恢复 100M 水平，那么很明显 dwm.exe 出现了内存泄漏。</p>
+</li>
+<li><p>在一两天的观察后，发现黑屏再也没有出现了，这么看就是 dwm.exe 长时间高内存占用出现的故障</p>
+</li>
+<li><p><strong>总结</strong>：dwm.exe 内存泄漏导致故障，只要留个心监控内存，在出现高占用(总占用超过 70%)时即使重启，黑屏就不会出现。</p>
+</li>
+<li><p><strong>未来</strong>：可以考虑写个脚本实时监控，如果超过 150Mb 占用即刻重启。</p>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://yebingiscn.github.io">叶绿素b</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://yebingiscn.github.io/2024/07/18/matebook%E9%BB%91%E5%B1%8F%E6%8E%92%E6%95%85/">https://yebingiscn.github.io/2024/07/18/matebook%E9%BB%91%E5%B1%8F%E6%8E%92%E6%95%85/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://yebingiscn.github.io" target="_blank">叶绿素b的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%94%9F%E6%B4%BB/">生活</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="next-post pull-full" href="/2024/03/04/%E4%BD%BF%E7%94%A8Windows%E6%93%8D%E4%BD%9CiPhone/" title="APP测试相关"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">APP测试相关</div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a href="/2022/11/06/%E5%AE%9E%E8%AE%AD%E8%AE%B0%E5%BD%95/" title="实训记录"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-11-06</div><div class="title">实训记录</div></div></a><a href="/2020/04/20/%E6%95%B4%E7%90%86%E6%96%87%E4%BB%B6%E6%97%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/" title="整理文件时的一些感悟"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-20</div><div class="title">整理文件时的一些感悟</div></div></a><a href="/2023/09/12/%E6%B5%AE%E4%BA%91%E8%88%AC%E7%9A%84%E5%BE%80%E4%BA%8B/" title="浮云般的往事"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-09-12</div><div class="title">浮云般的往事</div></div></a><a href="/2020/08/01/%E7%85%A7%E7%89%87%E8%83%8C%E5%90%8E%E7%9A%84%E7%89%A9%E7%90%86%E6%80%9D%E8%80%83/" title="照片背后的物理思考"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-01</div><div class="title">照片背后的物理思考</div></div></a><a href="/2024/01/27/%E7%96%B2%E6%83%AB%E4%B8%8E%E8%BF%B7%E8%8C%AB/" title="疲惫与迷茫"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-27</div><div class="title">疲惫与迷茫</div></div></a><a href="/2020/04/16/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" title="第一篇博客"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-16</div><div class="title">第一篇博客</div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info is-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">叶绿素b</div><div class="author-info-description">严肃认真，周到细致，稳妥可靠，万无一失</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">30</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/18/matebook%E9%BB%91%E5%B1%8F%E6%8E%92%E6%95%85/" title="Matebook黑屏排故">Matebook黑屏排故</a><time datetime="2024-07-18T05:34:05.000Z" title="发表于 2024-07-18 13:34:05">2024-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/04/%E4%BD%BF%E7%94%A8Windows%E6%93%8D%E4%BD%9CiPhone/" title="APP测试相关">APP测试相关</a><time datetime="2024-03-04T03:33:15.000Z" title="发表于 2024-03-04 11:33:15">2024-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/03/04/Windows%E4%B8%8B%E4%BD%BF%E7%94%A8VM%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Mac/" title="Windows下使用VM虚拟机安装Mac">Windows下使用VM虚拟机安装Mac</a><time datetime="2024-03-04T03:21:17.000Z" title="发表于 2024-03-04 11:21:17">2024-03-04</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/28/%E6%A0%87%E7%AD%BE%E7%94%9F%E4%BA%A7%E5%9B%9E%E5%BD%92%E8%87%AA%E5%8A%A8%E5%8C%96%E8%84%9A%E6%9C%AC/" title="标签生产回归自动化脚本">标签生产回归自动化脚本</a><time datetime="2024-01-27T16:28:59.000Z" title="发表于 2024-01-28 00:28:59">2024-01-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/01/27/%E7%96%B2%E6%83%AB%E4%B8%8E%E8%BF%B7%E8%8C%AB/" title="疲惫与迷茫">疲惫与迷茫</a><time datetime="2024-01-27T15:53:40.000Z" title="发表于 2024-01-27 23:53:40">2024-01-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2024 By 叶绿素b</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
