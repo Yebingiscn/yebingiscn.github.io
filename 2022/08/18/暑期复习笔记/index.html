@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>暑期复习笔记 | 叶绿素b的博客</title><meta name="author" content="叶绿素b"><meta name="copyright" content="叶绿素b"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这个暑期学了很多东西，也需要个笔记来记录一下，不然都不记得了。  Vs code 编辑 md 使用 Ctrl+shift+v 预览 md 效果 采用语言的形式来包裹代码 更多语法：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;108984311  多级评论的实现 区分一级评论主表和次级评论表，彼此之间用外键相连 采用Map&lt;评论表, List&lt;次级评论表&gt;&gt;的方">
+<meta property="og:type" content="article">
+<meta property="og:title" content="暑期复习笔记">
+<meta property="og:url" content="https://yebingiscn.github.io/2022/08/18/%E6%9A%91%E6%9C%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="叶绿素b的博客">
+<meta property="og:description" content="这个暑期学了很多东西，也需要个笔记来记录一下，不然都不记得了。  Vs code 编辑 md 使用 Ctrl+shift+v 预览 md 效果 采用语言的形式来包裹代码 更多语法：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;108984311  多级评论的实现 区分一级评论主表和次级评论表，彼此之间用外键相连 采用Map&lt;评论表, List&lt;次级评论表&gt;&gt;的方">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://yebingiscn.github.io/img/shuita.jpg">
+<meta property="article:published_time" content="2022-08-18T08:45:20.000Z">
+<meta property="article:modified_time" content="2024-06-21T17:33:51.556Z">
+<meta property="article:author" content="叶绿素b">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yebingiscn.github.io/img/shuita.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "暑期复习笔记",
+  "url": "https://yebingiscn.github.io/2022/08/18/%E6%9A%91%E6%9C%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/",
+  "image": "https://yebingiscn.github.io/img/shuita.jpg",
+  "datePublished": "2022-08-18T08:45:20.000Z",
+  "dateModified": "2024-06-21T17:33:51.556Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "叶绿素b",
+      "url": "https://yebingiscn.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/shuita.jpg"><link rel="canonical" href="https://yebingiscn.github.io/2022/08/18/%E6%9A%91%E6%9C%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '暑期复习笔记',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="叶绿素b的博客" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/img/background.jpg);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/deindex.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/friend_404.gif" alt="Logo"><span class="site-name">叶绿素b的博客</span></a><a class="nav-page-title" href="/"><span class="site-name">暑期复习笔记</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">暑期复习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-18T08:45:20.000Z" title="发表于 2022-08-18 16:45:20">2022-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-06-21T17:33:51.556Z" title="更新于 2024-06-22 01:33:51">2024-06-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><pre><code>这个暑期学了很多东西，也需要个笔记来记录一下，不然都不记得了。
+</code></pre>
+<h2 id="Vs-code-编辑-md"><a href="#Vs-code-编辑-md" class="headerlink" title="Vs code 编辑 md"></a>Vs code 编辑 md</h2><ul>
+<li>使用 Ctrl+shift+v 预览 md 效果</li>
+<li>采用<code>语言</code>的形式来包裹代码</li>
+<li>更多语法：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/108984311">https://zhuanlan.zhihu.com/p/108984311</a></li>
+</ul>
+<h2 id="多级评论的实现"><a href="#多级评论的实现" class="headerlink" title="多级评论的实现"></a>多级评论的实现</h2><ol>
+<li>区分一级评论主表和次级评论表，彼此之间用外键相连</li>
+<li>采用<code>Map&lt;评论表, List&lt;次级评论表&gt;&gt;</code>的方式接收</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line">List&lt;CommentInfo&gt; allComment = mapper.getAllComment();</span><br><span class="line">    Map&lt;CommentInfo, List&lt;ChildCommentInfo&gt;&gt; commentInfoMap = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; allComment.size()) &#123;</span><br><span class="line">        <span class="type">CommentInfo</span> <span class="variable">commentInfo</span> <span class="operator">=</span> allComment.get(i);</span><br><span class="line">        commentInfoMap.put(commentInfo, mapper.getAllChildComment(commentInfo.getId()));</span><br><span class="line">        i++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="for-循环之性能优化"><a href="#for-循环之性能优化" class="headerlink" title="for 循环之性能优化"></a>for 循环之性能优化</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qimowei/article/details/113701999">https://blog.csdn.net/qimowei/article/details/113701999</a></p>
+<ol>
+<li>写在第一个(消除循环终止判断时的方法调用)，不过这会带来要给新变量命名的问题，降低了可读性</li>
+<li>嵌套循环应该遵循“外小内大”的原则</li>
+<li>提取与循环无关的表达式</li>
+<li>不要将<code>try catch</code>放到循环内部</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">for</span>() &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="正则表达式的简单应用"><a href="#正则表达式的简单应用" class="headerlink" title="正则表达式的简单应用"></a>正则表达式的简单应用</h2><pre><code>以前我学到的正则表达式还得获取Matcher对象的,现在发现有更简单的
+</code></pre>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.matches(emailMatcher);<span class="comment">//里面是正则表达式的字符串</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么不能在增强-for-循环和迭代过程中通过-list-本身进行添加-删除操作"><a href="#为什么不能在增强-for-循环和迭代过程中通过-list-本身进行添加-删除操作" class="headerlink" title="为什么不能在增强 for 循环和迭代过程中通过 list 本身进行添加&#x2F;删除操作"></a>为什么不能在增强 for 循环和迭代过程中通过 list 本身进行添加&#x2F;删除操作</h2><pre><code>在增强for循环和迭代器遍历的过程中对list操作会失败，这是为什么呢？
+</code></pre>
+<p>ArrayList 源代码中有这么一个方法：在迭代器的 hasNext()、next()方法都会被调用。<br>作用是判断 list 的大小有没有变化，如果变了，就抛异常。<br>也就是说，源代码就规定了不能在迭代过程中通过 List 本身进行添加&#x2F;删除操作。<br>此外，<code>list.remove(s)</code>:通过数组遍历,找到 s 将其删除,然后把后面的元素前移,size-1。<br><code>iterator.remove()</code>:原理一样,但是<code>iterator.hasNext()</code>判断的是有没有下一个元素,cursor 指向的是下一个元素的索引。<br>简单来说就是这个迭代遍历的时候长度是固定的，假如删除或者增加了，长度改变，cursor 无法更新这个长度或者识别这个元素。</p>
+<h2 id="双端队列-ArrayDeque"><a href="#双端队列-ArrayDeque" class="headerlink" title="双端队列 ArrayDeque"></a>双端队列 ArrayDeque</h2><ul>
+<li>ArrayDeque 是采用数组方式实现的双端队列。</li>
+<li>ArrayDeque 的出队入队是通过头尾指针循环，利用数组实现的。</li>
+<li>ArrayDeque 容量不足时是会扩容的，每次扩容容量增加一倍。</li>
+<li>ArrayDeque 可以直接作为栈使用。当用作栈时，性能优于 Stack，当用于队列时，性能优于 LinkedList。</li>
+<li>无容量大小限制，容量按需增长。</li>
+<li>非线程安全队列，无同步策略，不支持多线程安全访问。</li>
+<li>具有 fail-fast 特性，不能存储 null 值，支持双向迭代器遍历。<br>应该是一种双向指针的链表。可以直接删除第一个，也可以删除最后一个<br><strong>注意：可能是 bug 或者偶然，在遍历的时候，ArrayDeque.size 作为 for 循环条件很有可能会出现异常结果，可以将其放到 for 循环外</strong></li>
+</ul>
+<h2 id="红黑树、B-树与-B-树"><a href="#红黑树、B-树与-B-树" class="headerlink" title="红黑树、B 树与 B+树"></a>红黑树、B 树与 B+树</h2><h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><ol>
+<li>特点<ul>
+<li>是个二叉树，当两个子树不平衡的时候会进行旋转（最多三次）平衡左右两边，免得变成链表</li>
+<li>每个节点或者是黑色，或者是红色。</li>
+<li>根节点是黑色。</li>
+<li>每个叶子节点（NIL）是黑色。 [注意：这里叶子节点，是指为空(NIL 或 NULL)的叶子节点！]</li>
+<li>如果一个节点是红色的，则它的子节点必须是黑色的。</li>
+</ul>
+</li>
+<li>用途<br>java 中使用到红黑树的有 TreeSet 和 JDK1.8 的 HashMap。</li>
+<li>为什么 HashMap 底层不用 B&#x2F;B+树<br>红黑树在内存中查找非常快，红黑树实现也比 B 树&#x2F;B+树实现简单，B&#x2F;B+树多路子树相比红黑树空间开销自然也更大。</li>
+</ol>
+<h3 id="B-树"><a href="#B-树" class="headerlink" title="B 树"></a>B 树</h3><ol>
+<li>用途<br>B 树多用于做文件系统的索引。</li>
+<li>特点<br>B 树不是个二叉树，他的子树更多也就是路数越多</li>
+<li>为什么二叉树不能用于文件系统<br>因为文件系统和数据库一般都是存在电脑硬盘上的，如果数据量太大的话不一定能一次性加载到内存中。而二叉树得加载完才能找，这样开销就比较大。</li>
+</ol>
+<h3 id="B-树-1"><a href="#B-树-1" class="headerlink" title="B+树"></a>B+树</h3><ol>
+<li>用途<br>B+树多用于数据库的索引</li>
+<li>特点<br>相比 B 树多了索引，B+树同样不是个二叉树</li>
+<li>为什么 B+树在数据库中做索引<br>因为在数据库中 select 常常不只是查询一条记录，常常要查询多条记录。比如：按照 id 的排序的后 10 条。如果是多条的话，B 树需要做中序遍历，可能要跨层访问。而 B+树由于所有数据都在叶子结点，不用跨层，同时由于有链表结构，只需要找到首尾，通过链表就能够把所有数据取出来了。</li>
+</ol>
+<h2 id="一个项目跟着教程做完，应该怎么总结？"><a href="#一个项目跟着教程做完，应该怎么总结？" class="headerlink" title="一个项目跟着教程做完，应该怎么总结？"></a>一个项目跟着教程做完，应该怎么总结？</h2><ol>
+<li>我们怎么去跟着教程或者视频做的项目：<br>是他写一句我们写一句，还是我们把整个项目或者某一个模块看完了，再去写的，然后写到不会就去研究他是怎么写的</li>
+<li>思考深度：<br>假如有人问我们 为什么这一块要这样写， 项目亮点是什么 ，项目哪块做起来比较难，哪些地方做完让自己收获很大，为什么想做这个项目，后续还有拓展什么，自己写这个项目的整体思路是什么，为什么这样设计，技术选型为啥选这个而不是其他的。。。</li>
+<li>对于某个重要模块有哪些实现方式，这些方式间的区别是什么？你选择其中一种方式的理由是什么？<br>性能 or 便于实现 or 扩展性好利于后续升级之类。<br>我个人而言还有一点就是……做完之后，出去能跟别人吹这个项目的任何原理、精妙的代码实现细节，我就感觉这个算是我自己的项目了</li>
+</ol>
+<h2 id="计算基本路径法"><a href="#计算基本路径法" class="headerlink" title="计算基本路径法"></a>计算基本路径法</h2><p>可以通过计算谓词节点来做，公式为 基本路径&#x3D;谓词节点+1；<br>谓词节点是指程序中的条件语句，该题中依次有 while，if，if 三个条件语句，故有四条基本路径。</p>
+<h2 id="计算圈复杂度"><a href="#计算圈复杂度" class="headerlink" title="计算圈复杂度"></a>计算圈复杂度</h2><p>圈复杂度实际上就是等于判定节点的数量再加上 1。对应的计算公式为：V (G) &#x3D; P + 1</p>
+<h2 id="测试概念"><a href="#测试概念" class="headerlink" title="测试概念"></a>测试概念</h2><ul>
+<li>逻辑覆盖法和基本路径测试是白盒测试的大分类；</li>
+<li>正交实验设计法：也是不涉及代码内部结构的典型的黑盒测试方法；</li>
+<li>边界值法在黑盒测试中，我们可以不涉及代码来取边界值；但是也可以在设计代码时，比如在条件覆盖等白盒测试方法中取到边界值，因为往往边界值的位置容易出错</li>
+<li>在白盒测试法中，选择足够的测试用例，使得每个判定中条件的各种可能组合都至少出现一次。AB 都符合，A 符合 B 不符合，A 不符合 B 符合，AB 都不符合。</li>
+<li>工件是加工过程中的生产对象。项目立项前，测试人员是不需要提供任何工件的。</li>
+<li>GUI 测试手段是系统测试手段</li>
+</ul>
+<h2 id="BCryptPasswordEncoder-的比较"><a href="#BCryptPasswordEncoder-的比较" class="headerlink" title="BCryptPasswordEncoder 的比较"></a>BCryptPasswordEncoder 的比较</h2><p>采用 encoder.matches(不加密的密码,加密密码);进行比较</p>
+<h2 id="风险曝光度"><a href="#风险曝光度" class="headerlink" title="风险曝光度"></a>风险曝光度</h2><p>风险曝光度（riskexposure）&#x3D;错误出现率（风险出现率）X 错误造成损失（风险损失）：<br>风险成本 &#x3D; 20 x 100 x 150 x 50% &#x3D;150000 元<br>风险概率 &#x3D; 60%<br>风险曝光度 &#x3D; 150000 元 x 60% &#x3D; 90000 元</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://yebingiscn.github.io">叶绿素b</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://yebingiscn.github.io/2022/08/18/%E6%9A%91%E6%9C%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://yebingiscn.github.io/2022/08/18/%E6%9A%91%E6%9C%9F%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://yebingiscn.github.io" target="_blank">叶绿素b的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a></div><div class="post-share"><div class="social-share" data-image="/img/shuita.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2022/08/13/Ak%E7%9A%84%E8%8E%B7%E5%8F%96%E6%96%B9%E6%B3%95/" title="Ak的获取方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Ak的获取方法</div></div><div class="info-2"><div class="info-item-1">Ak 的获取方法最近在做百度地图 API 相关的项目，需要用到获取安卓的 AK，简单来说就是一种密钥。但是获取的时候踩了些坑，在这里书写下怎么避免。  首先要注意自己的.android 路径，像我的其实放在 D 盘而不是和百度给的实例一样放在 C 盘 要带上 jdk 路径和-list -v -keystore debug.keystore。这里如果按照百度上来则是**巨坑 密码是 android  </div></div></div></a><a class="pagination-related" href="/2022/08/18/%E7%AE%97%E6%B3%95%E8%AF%A6%E8%A7%A3/" title="算法详解"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">算法详解</div></div><div class="info-2"><div class="info-item-1">算法详解 因为我的数学不好，理解很困难，所以我不喜欢算法，根本原因还是我解不出来，尽是挫败感。但是不学不行，而且我觉得，搞个合格还是没问题的。  排序冒泡排序1234567891011121314public class test &#123;    public static void main(String[] args) &#123;        int temp = 0;        for (int i = 0; i &lt; nums.length - 1; i++) &#123;//这里千万要注意-1            for (int j = 0; j &lt; nums.length - 1 - i; j++) &#123;//这里千万要注意length-1-i                if (nums[j] &gt; nums[j + 1]) &#123;                    temp = nums[j];                    nums[j] = nums[j + 1];                   ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2022/08/13/Ak%E7%9A%84%E8%8E%B7%E5%8F%96%E6%96%B9%E6%B3%95/" title="Ak的获取方法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-13</div><div class="info-item-2">Ak的获取方法</div></div><div class="info-2"><div class="info-item-1">Ak 的获取方法最近在做百度地图 API 相关的项目，需要用到获取安卓的 AK，简单来说就是一种密钥。但是获取的时候踩了些坑，在这里书写下怎么避免。  首先要注意自己的.android 路径，像我的其实放在 D 盘而不是和百度给的实例一样放在 C 盘 要带上 jdk 路径和-list -v -keystore debug.keystore。这里如果按照百度上来则是**巨坑 密码是 android  </div></div></div></a><a class="pagination-related" href="/2020/09/10/C++%E6%97%B6%E9%97%B4%E6%9A%82%E5%81%9C%E8%AF%AD%E5%8F%A5%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="C++时间暂停语句与数据结构"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-10</div><div class="info-item-2">C++时间暂停语句与数据结构</div></div><div class="info-2"><div class="info-item-1"> 最近在学数据结构，对时间频度和时间复杂度无力吐槽，现在讲到了顺序表。顺序表之类的还是配合指针感觉会比较香。   时间复杂度时间复杂度只学了一个 for 函数的，总的来说就是有几个 for 循环就是 O(N)的几次方，如果参加大学生程序设计大赛那估计要学一下其他的循环比如说 while 循环。学完之后，我觉得要重新学一下其他的循环，复习一下  顺序表，没什么好说的学好指针  C++程序暂停我目前学了两种方法 1system(&quot;pause&quot;)  实现了以后会暂停，要按 Enter 键才能下一步sleep 函数要有一个头文件 1include&lt;windows.h&gt;  然后要写的里面写 sleep 函数比如说 Sleep(time) &#x2F;&#x2F;S 要大写，time 里面写数字，1 就是 1 毫秒   </div></div></div></a><a class="pagination-related" href="/2021/02/24/C++%E5%9F%BA%E7%A1%80%E7%BB%83%E4%B9%A0/" title="C++基础练习"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-02-24</div><div class="info-item-2">C++基础练习</div></div><div class="info-2"><div class="info-item-1"> 用代码实现从 1+2*3&#x2F;4 的运算过程及结果，并打印  用代码实现变量 a 和变量 b 值的交换，并打印最终 a 和 b 的值  随意输入两个数，比较第一个数和第二个数的大小并打印。  随意输入一个数，判断这个数是奇数还是偶数，并打印。  判断一个数字是否能被 5 和 6 同时整除，并打印。  输入一个 0-100 的分数，如果不是 0-100 之间，打印分数无效，根据分数等级打印出“不及格（0-59）”“及格（60-79）”“优秀（80-100）”  随意输入三个不相同的数字，求出三个数中的最小值并打印。  使用 while 循环打印出 1-100 中 3 的倍数。  计算 1+2+3+4+…+100 的总和并打印。  编一个程序，输出 1-100 中能够整除 3 但不能整除 5 的数，并统计有多少个这样的数。  输入 1-12 随意一个数判断是什么季节并打印。  编一个程序，求出 1-6000 之间能够满足“用 3 除余 2，用 5 除余 3，用 7 除余 2”的数，要求每行输出 5 个数。这上面都太简单了，不写了  在不使用第三方变量的情况下，用代码实现变量...</div></div></div></a><a class="pagination-related" href="/2021/10/10/HTML%E4%B8%ADtextArea%E7%94%A8%E6%B3%95%E4%B8%8E%E4%BD%93%E6%B5%8B/" title="HTML中textArea用法与体测"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-10</div><div class="info-item-2">HTML中textArea用法与体测</div></div><div class="info-2"><div class="info-item-1">前段时间断更了，我感觉我关于这些学习的都是会咕咕，好吧，其实碰到了好多东西，比如说体测。从现在来看，基本现在大部分项目都很难及格。我感觉我生晚几年或是去到那些很重视的大学估计就得被淘汰了。现在也加了一个同学的训练班，慢慢练呗。顺便把体重搞上去。  说回 JSP 与 HTML，一个登录注册搞了一节课实在不应该，主要是还是没有理解 JSP 的处理，卡住了，不过还是搞出来了。HTML 的 textArea 用法也是在 form 表单里，但是 textArea 有点特殊 123&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;  &lt;textarea name=&quot;textarea&quot;&gt; 这里可以写内容&lt;/textarea&gt;&lt;/form&gt;  属性				值			 描述 autofocus 	    autofocus	...</div></div></div></a><a class="pagination-related" href="/2020/04/27/C++%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="C++课程设计学习笔记"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-04-27</div><div class="info-item-2">C++课程设计学习笔记</div></div><div class="info-2"><div class="info-item-1">对上个学期做得课程设计进行一个总结概况：信管在读，其实知乎上对这个专业风评不太好，但我还是选了。我们的 C 语言（其实是 C++ 啦）64 节课，加上程序设计 16 节课，只学到了类和文件读写，也没学派生类，挺可惜的，刚好只能做一个简单的系统。我看华农这个学期貌似也是做这个来当大作业。但很可惜的是，我的大多同学都是直接抄了老师的源代码，连注释都没有改。。。。。。答辩的时候老师都要被气死了。。。  PS:我一直不喜欢部门的值班，因为我是唯一一个早上早起值班的，不过我发现了一本讲 C++的教材，然后极大的帮助了我的课程设计。  总结： 我现在写代码，还是会 C++和 C 混用，比如说 printf 和 cout   验证码：  123456789101112131415#define N 5void passcode(char s[], int n)//验证码模块 char s[]&#123;	char str[] = &quot;0123456789&quot;;	int i, k, le;	le = strlen(str);	srand(time(0));	for (i =...</div></div></div></a><a class="pagination-related" href="/2021/09/09/HTML%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/" title="HTML学习笔记1"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-09</div><div class="info-item-2">HTML学习笔记1</div></div><div class="info-2"><div class="info-item-1"> 不知不觉就大三了，博客也鸽了很久，还是写写，当个参考，定个小目标吧，两天更新一篇，最近在学 JSP 里的 HTML，我发现我不是很熟，在这里整理一下很多内容都来自蓝桥课程的 HTML 教程，推荐学习！   标签 &lt;p&gt;这是个标签&lt;/p&gt; 标题 标题有六种，他们的主要区别是字体大小不同123456&lt;h1&gt;我是一级标题&lt;/h1&gt;&lt;h2&gt;我是二级标题&lt;/h2&gt;&lt;h3&gt;我是三级标题&lt;/h3&gt;&lt;h4&gt;我是四级标题&lt;/h4&gt;&lt;h5&gt;我是五级标题&lt;/h5&gt;&lt;h6&gt;我是六级标题&lt;/h6&gt; 图片 图片放置方式：&lt;img src=&quot;图片地址&quot;/&gt;  跳转 &lt;a href=&quot;https://www.xxx.cn/&quot;&gt;xxx&lt;/a&gt; 填充 &lt;div...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/shuita.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">叶绿素b</div><div class="author-info-description">严肃认真，周到细致，稳妥可靠，万无一失</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Yebingiscn"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Hello World!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vs-code-%E7%BC%96%E8%BE%91-md"><span class="toc-number">1.</span> <span class="toc-text">Vs code 编辑 md</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E8%AF%84%E8%AE%BA%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.</span> <span class="toc-text">多级评论的实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#for-%E5%BE%AA%E7%8E%AF%E4%B9%8B%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">for 循环之性能优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8"><span class="toc-number">4.</span> <span class="toc-text">正则表达式的简单应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%9C%A8%E5%A2%9E%E5%BC%BA-for-%E5%BE%AA%E7%8E%AF%E5%92%8C%E8%BF%AD%E4%BB%A3%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%80%9A%E8%BF%87-list-%E6%9C%AC%E8%BA%AB%E8%BF%9B%E8%A1%8C%E6%B7%BB%E5%8A%A0-%E5%88%A0%E9%99%A4%E6%93%8D%E4%BD%9C"><span class="toc-number">5.</span> <span class="toc-text">为什么不能在增强 for 循环和迭代过程中通过 list 本身进行添加&#x2F;删除操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97-ArrayDeque"><span class="toc-number">6.</span> <span class="toc-text">双端队列 ArrayDeque</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91%E3%80%81B-%E6%A0%91%E4%B8%8E-B-%E6%A0%91"><span class="toc-number">7.</span> <span class="toc-text">红黑树、B 树与 B+树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="toc-number">7.1.</span> <span class="toc-text">红黑树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E6%A0%91"><span class="toc-number">7.2.</span> <span class="toc-text">B 树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B-%E6%A0%91-1"><span class="toc-number">7.3.</span> <span class="toc-text">B+树</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E8%B7%9F%E7%9D%80%E6%95%99%E7%A8%8B%E5%81%9A%E5%AE%8C%EF%BC%8C%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E6%80%BB%E7%BB%93%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">一个项目跟着教程做完，应该怎么总结？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%9F%BA%E6%9C%AC%E8%B7%AF%E5%BE%84%E6%B3%95"><span class="toc-number">9.</span> <span class="toc-text">计算基本路径法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E5%9C%88%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="toc-number">10.</span> <span class="toc-text">计算圈复杂度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%A6%82%E5%BF%B5"><span class="toc-number">11.</span> <span class="toc-text">测试概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BCryptPasswordEncoder-%E7%9A%84%E6%AF%94%E8%BE%83"><span class="toc-number">12.</span> <span class="toc-text">BCryptPasswordEncoder 的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A3%8E%E9%99%A9%E6%9B%9D%E5%85%89%E5%BA%A6"><span class="toc-number">13.</span> <span class="toc-text">风险曝光度</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By 叶绿素b</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script></div></body></html>
